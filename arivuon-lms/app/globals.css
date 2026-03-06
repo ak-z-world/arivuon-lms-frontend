@@ -1,0 +1,173 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+/* app/globals.css */
+
+:root {
+  /* ── Cosmic base ── */
+  --cosmos:    #020408;
+  --nebula1:   #0D1B2A;
+  --nebula2:   #1A0A2E;
+  --surface:   rgba(5, 12, 24, 0.88);
+  --panel:     rgba(8, 18, 36, 0.92);
+  --border:    rgba(0, 212, 255, 0.10);
+
+  /* ── Energy colors ── */
+  --plasma:    #00D4FF;
+  --aurora1:   #00FFCC;
+  --aurora2:   #7B2FFF;
+  --aurora3:   #FF006E;
+  --gold:      #FFD700;
+  --pink:      #FF6B9D;
+  --purple:    #A78BFA;
+
+  /* ── Text ── */
+  --text-pri:  #E8F4FF;
+  --text-dim:  rgba(200, 230, 240, 0.35);
+  --text-faint:rgba(200, 230, 240, 0.18);
+
+  /* ── Role accent (overridden per layout) ── */
+  --role-accent:     var(--plasma);
+  --role-accent-dim: rgba(0, 212, 255, 0.12);
+  --role-glow:       rgba(0, 212, 255, 0.35);
+}
+
+[data-role="student"] {
+  --role-accent:     #00D4FF;
+  --role-accent-dim: rgba(0, 212, 255, 0.12);
+  --role-glow:       rgba(0, 212, 255, 0.35);
+}
+[data-role="trainer"] {
+  --role-accent:     #A78BFA;
+  --role-accent-dim: rgba(167, 139, 250, 0.12);
+  --role-glow:       rgba(167, 139, 250, 0.35);
+  --border:          rgba(167, 139, 250, 0.10);
+}
+[data-role="admin"] {
+  --role-accent:     #00FFCC;
+  --role-accent-dim: rgba(0, 255, 204, 0.12);
+  --role-glow:       rgba(0, 255, 204, 0.35);
+  --border:          rgba(0, 255, 204, 0.10);
+}
+
+/* ── Reset ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  background: var(--cosmos);
+  color: var(--text-pri);
+  font-family: "Exo 2", sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar          { width: 3px; height: 3px; }
+::-webkit-scrollbar-track    { background: transparent; }
+::-webkit-scrollbar-thumb    { background: rgba(0, 212, 255, 0.22); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(0, 212, 255, 0.42); }
+
+/* ── Global inputs ── */
+input, textarea, select {
+  background: rgba(0, 212, 255, 0.04);
+  border: 1px solid rgba(0, 212, 255, 0.14);
+  border-radius: 12px;
+  color: var(--text-pri);
+  font-family: "Exo 2", sans-serif;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.25s ease;
+}
+input:focus, textarea:focus {
+  border-color: var(--role-accent, #00D4FF);
+}
+input::placeholder {
+  color: rgba(200, 230, 240, 0.22);
+}
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 100px #060e1c inset !important;
+  -webkit-text-fill-color: #e8f4ff !important;
+}
+
+/* ── Links ── */
+a { color: inherit; text-decoration: none; }
+
+/* ── Shared keyframes (used across all pages) ── */
+@keyframes holoPan {
+  0%   { background-position: 0%   center; }
+  100% { background-position: 200% center; }
+}
+@keyframes orbSpin  { to { transform: rotate(360deg);  } }
+@keyframes orbSpinR { to { transform: rotate(-360deg); } }
+@keyframes breathe {
+  0%, 100% { transform: scale(1);    opacity: 0.55; }
+  50%      { transform: scale(1.08); opacity: 1;    }
+}
+@keyframes gravPulse {
+  0%, 100% { box-shadow: 0 0 30px rgba(0,212,255,0.22), 0 0 70px rgba(0,212,255,0.08); }
+  50%      { box-shadow: 0 0 55px rgba(0,212,255,0.50), 0 0 120px rgba(0,212,255,0.18); }
+}
+@keyframes ringPulse {
+  0%   { transform: scale(0.5); opacity: 1; }
+  100% { transform: scale(2.8); opacity: 0; }
+}
+@keyframes scanH {
+  from { transform: translateY(-100vh); }
+  to   { transform: translateY(200vh);  }
+}
+@keyframes slideUp {
+  from { transform: translateY(24px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes warpIn {
+  0%   { transform: scaleX(0.04) scaleY(0.3); opacity: 0; filter: blur(18px); }
+  55%  { transform: scaleX(1.04) scaleY(1.03); opacity: 1; filter: blur(0);   }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes eFlow {
+  0%   { background-position: 0%   50%; }
+  100% { background-position: 200% 50%; }
+}
+@keyframes dotBounce {
+  0%, 100% { transform: translateY(0);    }
+  50%      { transform: translateY(-5px); }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
