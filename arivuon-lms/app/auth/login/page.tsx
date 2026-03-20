@@ -1,4 +1,5 @@
-import CosmosEngine from "@/components/background/CosmosEngine"
+// D:\arivuon-lms-frontend\arivuon-lms\app\auth\login\page.tsx
+import CosmosEngine from "@/components/background/LuminaBackground"
 import LoginForm from "@/components/auth/LoginForm"
 
 export default function LoginPage() {

@@ -1,5 +1,5 @@
 import HeroSection from "@/components/landing/HeroSection"
-import CosmosEngine from "@/components/background/CosmosEngine"
+import CosmosEngine from "@/components/background/LuminaBackground"
 
 export default function Home() {
 
